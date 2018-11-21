@@ -1,4 +1,6 @@
 **This is a laravel 5.7 application which is built to understand and learn basic Laravel concepts like:**
+
+
 1. ORM:  Object Relation Mapping (one to one, one to many etc)
 2. CRUD: Create, Read, Update and Delete operations
 3. MVC architecture: Model, View and Controller. 
@@ -12,7 +14,7 @@
 **Following are the APIs made:**
 
 
-// **READ**
+  **READ**
 1. Route::get('/categories','CategoryController@index');
 
 
@@ -48,7 +50,7 @@
 
 7. http://127.0.0.1:8000/books?categoryId=2 (Search)
 
-//**CREATE**
+**CREATE**
 
 
 8. Route::post('/categories/create', 'CategoryController@create');
@@ -60,7 +62,7 @@
 
    To create a new book.
    
-//**UPDATE**
+**UPDATE**
 
 
 10. Route::patch('/categories', 'CategoryController@update');
@@ -73,7 +75,7 @@
     To update a book.
     
     
-//**DELETE**
+**DELETE**
 
 
 12. Route::post('/categories/delete/{id}', 'CategoryController@destroy');
@@ -88,7 +90,7 @@
     To delete a book of a particular id.
     
     
-**MVC Architecture:**
+  **MVC Architecture:**
 
 
 1. CategoryController -> CategoryService -> CategoryRepository -> Category Model
@@ -97,7 +99,7 @@
 2. CategoryBooksController -> CategoryBooksService -> CategoryBooksRepository -> Book Model
 
 
-**Object Relation Mapping**
+  **Object Relation Mapping**
 
 
 A book belongs to a category 
