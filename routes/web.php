@@ -69,16 +69,14 @@ Route::get('/categories/{id}/books','CategoryBooksController@categoryBooks');
 Route::get('/books/{id}','CategoryBooksController@show');
 Route::get('/books','CategoryBooksController@index');
 
-//
-////CREATE
-Route::post('/categories/create', 'CategoryController@create');
-Route::post('/categories/books/create', 'CategoryBooksController@create');
-//
-//
-////UPDATE
+//CREATE
+Route::post('/categories', 'CategoryController@create');
+Route::post('/book', 'CategoryBooksController@create');
+
+//UPDATE
 Route::patch('/categories', 'CategoryController@update');
-Route::patch('/categories/books', 'CategoryBooksController@update');
-//
-////DELETE
-Route::post('/categories/delete/{id}', 'CategoryController@destroy');
-Route::post('/categories/books/delete/{id}', 'CategoryBooksController@destroy');
+Route::patch('/book', 'CategoryBooksController@update');
+
+//DELETE
+Route::delete('/categories/{id}', 'CategoryController@destroy');
+Route::delete('/book/{id}', 'CategoryBooksController@destroy');

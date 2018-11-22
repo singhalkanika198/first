@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use \App\Http\Services\CategoryBooksService;
+use \App\Model\Book\CategoryBooksService;
 
+use Validator;
+use Response;
 class CategoryBooksController extends Controller
 {
     protected $categoryBooksService = null;
@@ -30,6 +32,16 @@ class CategoryBooksController extends Controller
 
     function create(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'description' => 'required',
+            'author' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json("Name,description and category_id are mandatory to send", 403);
+        }
         return $this->categoryBooksService->createBook($request);
     }
 
@@ -40,11 +52,14 @@ class CategoryBooksController extends Controller
 
     function update(Request $request)
     {
-        return $this->categoryBooksService->updateBook($request);
+        return Response::json([
+            'message' => 'The resource has been successfully updated',
+            'updated Resource' =>  $this->categoryBooksService->updateBook($request)
+        ],200);
     }
 
     function destroy($id)
     {
-        return $this->categoryBooksService->destroyBook($id);
+        return Response::json($this->categoryBooksService->destroyBook($id),204);
     }
 }

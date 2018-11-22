@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Http\Services\CategoryService;
-
+use \App\Model\Category\CategoryService;
+use Response;
+use Validator;
 class CategoryController extends Controller
 {
     //
@@ -21,6 +22,14 @@ class CategoryController extends Controller
 
     function create(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'description' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json("Name and description are mandatory to send", 403);
+        }
         return $this->categoryService->createCategory($request);
     }
 
@@ -31,11 +40,14 @@ class CategoryController extends Controller
 
     function update(Request $request)
     {
-        return $this->categoryService->updateCategory($request);
+        return Response::json([
+            'message' => 'The resource has been successfully updated',
+            'updated Resource' =>  $this->categoryService->updateCategory($request)
+        ],200);
     }
 
     function destroy($category)
     {
-        return $this->categoryService->destroyCategory($category);
+        return Response::json($this->categoryService->destroyCategory($category),204);
     }
 }
