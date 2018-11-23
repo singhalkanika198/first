@@ -8,7 +8,7 @@ use App\Model\Book\CategoryBooksRepository;
 use App\Model\Category\CategoryRepository;
 use Response;
 use Illuminate\Support\Facades\Input;
-
+use Log;
 class CategoryBooksService
 {
     protected $categoryBooksRepository = null;
@@ -56,9 +56,10 @@ class CategoryBooksService
         return $this->categoryBooksRepository->create($request->all());
     }
 
-    public function updateBook(Request $request)
+    public function updateBook($id, Request $request)
     {
-        $id = $request->json("id");
+        //$id = $request->json("id");
+        Log::info($id);Log::info($request);
         $book = $this->categoryBooksRepository->find($id);
         return $this->categoryBooksRepository->update($id, $request->all());
     }

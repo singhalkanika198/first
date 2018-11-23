@@ -38,11 +38,11 @@ class CategoryController extends Controller
         return $this->categoryService->showCategory($category);
     }
 
-    function update(Request $request)
+    function update($id, Request $request)
     {
         return Response::json([
             'message' => 'The resource has been successfully updated',
-            'updated Resource' =>  $this->categoryService->updateCategory($request)
+            'updated Resource' =>  $this->categoryService->updateCategory($id, $request)
         ],200);
     }
 

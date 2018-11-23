@@ -74,8 +74,8 @@ Route::post('/categories', 'CategoryController@create');
 Route::post('/book', 'CategoryBooksController@create');
 
 //UPDATE
-Route::patch('/categories', 'CategoryController@update');
-Route::patch('/book', 'CategoryBooksController@update');
+Route::patch('/categories/{id}', 'CategoryController@update');
+Route::patch('/book/{id}', 'CategoryBooksController@update');
 
 //DELETE
 Route::delete('/categories/{id}', 'CategoryController@destroy');

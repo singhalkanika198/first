@@ -45,9 +45,9 @@ class CategoryService
         return $this->categoryRepository->create($request->all());
     }
 
-    public function updateCategory(Request $request)
+    public function updateCategory($id, Request $request)
     {
-        $id = $request->json("id");
+        //$id = $request->json("id");
         $category = $this->categoryRepository->find($id);
         return $this->categoryRepository->update($id, $request->all());
     }

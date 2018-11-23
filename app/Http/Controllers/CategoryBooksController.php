@@ -19,7 +19,6 @@ class CategoryBooksController extends Controller
 
     function categoryBooks($id)
     {
-
         $response = $this->categoryBooksService->getAllCategoryBooks($id);
 
         return $response;
@@ -40,7 +39,9 @@ class CategoryBooksController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Response::json("Name,description and category_id are mandatory to send", 403);
+            return Response::json([
+                'message' => "Name,description and category_id are mandatory to send"
+            ], 403);
         }
         return $this->categoryBooksService->createBook($request);
     }
@@ -50,11 +51,11 @@ class CategoryBooksController extends Controller
         return $this->categoryBooksService->showBook($id);
     }
 
-    function update(Request $request)
+    function update($id, Request $request)
     {
         return Response::json([
             'message' => 'The resource has been successfully updated',
-            'updated Resource' =>  $this->categoryBooksService->updateBook($request)
+            'updated Resource' =>  $this->categoryBooksService->updateBook($id, $request)
         ],200);
     }
 
